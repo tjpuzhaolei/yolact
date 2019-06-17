@@ -29,7 +29,7 @@ def str2bool(v):
 
 parser = argparse.ArgumentParser(
     description='Yolact Training Script')
-parser.add_argument('--batch_size', default=8, type=int,
+parser.add_argument('--batch_size', default=24, type=int,
                     help='Batch size for training')
 parser.add_argument('--resume', default=None, type=str,
                     help='Checkpoint state_dict file to resume training from. If this is "interrupt"'\
@@ -278,7 +278,7 @@ def train():
                 if iteration != args.start_iter:
                     time_avg.add(elapsed)
 
-                if iteration % 10 == 0:
+                if iteration % 50 == 0:
                     eta_str = str(datetime.timedelta(seconds=(cfg.max_iter-iteration) * time_avg.get_avg())).split('.')[0]
                     
                     total = sum([loss_avgs[k].get_avg() for k in losses])
