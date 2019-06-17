@@ -123,6 +123,15 @@ dataset_base = Config({
     'label_map': None
 })
 
+fashion_dataset = dataset_base.copy({
+    'name': 'ashion 2019',
+
+    'train_info': '/data_sharing/data41_data1/zl9/fashion-2019/fashion_coco/instances_fashion_train2018_v2.json',
+    'valid_info': '/data_sharing/data41_data1/zl9/fashion-2019/fashion_coco/instances_fashion_val2019.json',
+
+    'label_map': COCO_LABEL_MAP
+})
+
 coco2014_dataset = dataset_base.copy({
     'name': 'COCO 2014',
     
