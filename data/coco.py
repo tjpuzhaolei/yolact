@@ -13,7 +13,7 @@ from pycocotools import mask as maskUtils
 def get_label_map():
     cfg.dataset.label_map = None
     if cfg.dataset.label_map is None:
-        return {x + 1: x + 1 for x in range(len(cfg.dataset.class_names))}
+        return {x: x for x in range(len(cfg.dataset.class_names))}
     else:
         return cfg.dataset.label_map
 
