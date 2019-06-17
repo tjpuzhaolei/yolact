@@ -615,7 +615,7 @@ yolact_base_config = coco_base_config.copy({
         'pred_scales': [[3.5, 4.95], [3.6, 4.90], [3.3, 4.02], [2.7, 3.10], [2.1, 2.37], [1.8, 1.92]],
         'pred_aspect_ratios': [ [[1, sqrt(2), 1/sqrt(2), sqrt(3), 1/sqrt(3)][:n], [1]] for n in [3, 5, 5, 5, 3, 3] ],
     }),
-    
+
     # FPN Settings
     'fpn': fpn_base.copy({
         'use_conv_downsample': True,
