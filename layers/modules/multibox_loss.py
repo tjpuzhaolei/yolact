@@ -242,7 +242,7 @@ class MultiBoxLoss(nn.Module):
         else:
             # i.e. -softmax(class 0 confidence)
             loss_c = log_sum_exp(batch_conf) - batch_conf[:, 0]
-        pdb.set_trace()
+
         # Hard Negative Mining
         # loss_c = loss_c.view(pos.size()[0], pos.size()[1]) #add line
         loss_c = loss_c.view(num, -1)
