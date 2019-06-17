@@ -446,11 +446,11 @@ class Yolact(nn.Module):
                                     parent        = parent)
             self.prediction_layers.append(pred)
 
+        print('yyyyyyyyyy', cfg.num_classes)
         # Extra parameters for the extra losses
         if cfg.use_class_existence_loss:
             # This comes from the smallest layer selected
             # Also note that cfg.num_classes includes background
-            print('yyyyyyyyyy',cfg.num_classes)
             self.class_existence_fc = nn.Linear(src_channels[-1], cfg.num_classes - 1)
         
         if cfg.use_semantic_segmentation_loss:
