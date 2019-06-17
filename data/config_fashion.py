@@ -88,13 +88,22 @@ class Config(object):
 dataset_base = Config({
     'name': 'fashion_dataset',
 
+    # # Training images and annotations
+    # 'train_images': '/data_sharing/data411/zl9/fashion-2019/train/',
+    # 'train_info': '/data_sharing/data411/zl9/fashion-2019/fashion_coco/instances_fashion_train2018_v2.json',
+    #
+    # # Validation images and annotations.
+    # 'valid_images': '/data_sharing/data411/zl9/fashion-2019/val/',
+    # 'valid_info': '/data_sharing/data411/zl9/fashion-2019/fashion_coco/instances_fashion_val2019.json',
+
     # Training images and annotations
-    'train_images': '/data_sharing/data411/zl9/fashion-2019/train/',
-    'train_info': '/data_sharing/data411/zl9/fashion-2019/fashion_coco/instances_fashion_train2018_v2.json',
+    'train_images': '/data_sharing/data411/zl9/fashion-2019/train_person/train/',
+    'train_info': '/data_sharing/data411/zl9/fashion-2019/train_person/json/instances_fashion_train2019.json',
 
     # Validation images and annotations.
-    'valid_images': '/data_sharing/data411/zl9/fashion-2019/val/',
-    'valid_info': '/data_sharing/data411/zl9/fashion-2019/fashion_coco/instances_fashion_val2019.json',
+    'valid_images': '/data_sharing/data411/zl9/fashion-2019/train_person/val/',
+    'valid_info': '/data_sharing/data411/zl9/fashion-2019/fashion_coco/json/instances_fashion_val2019.json',
+
 
     # Whether or not to load GT. If this is False, eval.py quantitative evaluation won't work.
     'has_gt': True,
@@ -111,8 +120,8 @@ dataset_base = Config({
 fashion_dataset = dataset_base.copy({
     'name': 'fashion_dataset ',
 
-    'train_info': '/data_sharing/data411/zl9/fashion-2019/fashion_coco/instances_fashion_train2018_v2.json',
-    'valid_info': '/data_sharing/data411/zl9/fashion-2019/fashion_coco/instances_fashion_val2019.json',
+    # 'train_info': '/data_sharing/data411/zl9/fashion-2019/fashion_coco/instances_fashion_train2018_v2.json',
+    # 'valid_info': '/data_sharing/data411/zl9/fashion-2019/fashion_coco/instances_fashion_val2019.json',
 
     'label_map': None
 })
