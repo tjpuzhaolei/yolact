@@ -63,7 +63,7 @@ parser.add_argument('--keep_latest', dest='keep_latest', action='store_true',
                     help='Only keep the latest checkpoint instead of each one.')
 parser.add_argument('--keep_latest_interval', default=100000, type=int,
                     help='When --keep_latest is on, don\'t delete the latest file at these intervals. This should be a multiple of save_interval or 0.')
-parser.add_argument('--dataset', default=None, type=str,
+parser.add_argument('--dataset', default='fashion_dataset', type=str,
                     help='If specified, override the dataset specified in the config with this one (example: coco2017_dataset).')
 
 parser.set_defaults(keep_latest=False)
