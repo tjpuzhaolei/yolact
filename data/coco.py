@@ -6,7 +6,7 @@ import torch.utils.data as data
 import torchvision.transforms as transforms
 import cv2
 import numpy as np
-from .config import cfg
+from .config_fashion import cfg
 from pycocotools import mask as maskUtils
 
 def get_label_map():
