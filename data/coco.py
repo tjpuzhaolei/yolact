@@ -10,10 +10,11 @@ from .config_fashion import cfg
 from pycocotools import mask as maskUtils
 
 def get_label_map():
+    cfg.dataset.label_map = None
     if cfg.dataset.label_map is None:
         return {x+1: x+1 for x in range(len(cfg.dataset.class_names))}
     else:
-        return cfg.dataset.label_map 
+        return cfg.dataset.label_map
 
 class COCOAnnotationTransform(object):
     """Transforms a COCO annotation into a Tensor of bbox coords and label index
