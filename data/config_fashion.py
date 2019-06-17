@@ -27,14 +27,15 @@ COLORS = ((244, 67, 54),
 MEANS = (103.94, 116.78, 123.68)
 STD = (57.38, 57.12, 58.40)
 
-Fashion_CLASSES = ('shirt, blouse', 'top, t-shirt, sweatshirt', 'sweater', 'cardigan', 'jacket', 'vest',
-                   'pants', 'shorts', 'skirt', 'coat', 'dress',
-                   'jumpsuit', 'cape', 'glasses', 'hat', 'cat', 'headband, head covering, hair accessory',
-                   'tie', 'glove', 'watch', 'belt', 'leg warmerleg warmer', 'tights, stockings', 'sock',
-                   'shoe', 'bag, wallet', 'scarf', 'umbrella', 'hood', 'collar',
-                   'lapel', 'epaulette', 'sleeve', 'pocket', 'neckline',
-                   'buckle', 'zipper', 'applique', 'bead',
-                   'bow', 'flower', 'fringe', 'ribbon', 'rivet', 'ruffle', 'sequin',
+Fashion_CLASSES = ('shirt, blouse', 'top, t-shirt, sweatshirt', 'sweater', 'cardigan', 'jacket',
+                   'vest','pants', 'shorts', 'skirt', 'coat',
+                   'dress','jumpsuit', 'cape', 'glasses', 'hat',
+                   'headband, head covering, hair accessory','tie', 'glove', 'watch', 'belt',
+                   'leg warmerleg warmer', 'tights, stockings', 'sock','shoe', 'bag, wallet',
+                   'scarf','umbrella', 'hood', 'collar','lapel',
+                   'epaulette', 'sleeve', 'pocket', 'neckline','buckle',
+                   'zipper', 'applique', 'bead','bow', 'flower',
+                   'fringe', 'ribbon', 'rivet', 'ruffle', 'sequin',
                    'tassel')
 
 
