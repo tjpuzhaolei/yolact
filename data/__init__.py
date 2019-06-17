@@ -1,4 +1,4 @@
-from .config import *
+from .config_fashion import *
 from .coco import COCODetection, COCOAnnotationTransform, get_label_map
 
 import torch
