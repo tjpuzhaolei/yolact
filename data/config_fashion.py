@@ -384,7 +384,7 @@ fpn_base = Config({
 # ----------------------- CONFIG DEFAULTS ----------------------- #
 
 coco_base_config = Config({
-    'dataset': coco2014_dataset,
+    'dataset': fashion_dataset,
     'num_classes': 47, # This should include the background class
 
     'max_iter': 400000,
@@ -583,8 +583,8 @@ yolact_base_config = coco_base_config.copy({
     'name': 'yolact_base',
 
     # Dataset stuff
-    'dataset': coco2017_dataset,
-    'num_classes': len(coco2017_dataset.class_names) + 1,
+    'dataset': fashion_dataset,
+    'num_classes': len(fashion_dataset.class_names) + 1,
 
     # Image Size
     'max_size': 550,
