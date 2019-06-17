@@ -593,17 +593,29 @@ yolact_base_config = coco_base_config.copy({
     'lr_steps': (280000, 600000, 700000, 750000),
     'max_iter': 800000,
     
-    # Backbone Settings
-    'backbone': resnet101_backbone.copy({
-        'selected_layers': list(range(1, 4)),
-        'use_pixel_scales': True,
-        'preapply_sqrt': False,
-        'use_square_anchors': True, # This is for backward compatability with a bug
+    # # Backbone Settings
+    # 'backbone': resnet101_backbone.copy({
+    #     'selected_layers': list(range(1, 4)),
+    #     'use_pixel_scales': True,
+    #     'preapply_sqrt': False,
+    #     'use_square_anchors': True, # This is for backward compatability with a bug
+    #
+    #     'pred_aspect_ratios': [ [[1, 1/2, 2]] ]*5,
+    #     'pred_scales': [[24], [48], [96], [192], [384]],
+    # }),
 
-        'pred_aspect_ratios': [ [[1, 1/2, 2]] ]*5,
-        'pred_scales': [[24], [48], [96], [192], [384]],
+    'backbone': darknet53_backbone.copy({
+        'name': 'DarkNet53',
+        'path': 'darknet53.pth',
+        'type': DarkNetBackbone,
+        'args': ([1, 2, 8, 8, 4],),
+        'transform': darknet_transform,
+
+        'selected_layers': list(range(3, 9)),
+        'pred_scales': [[3.5, 4.95], [3.6, 4.90], [3.3, 4.02], [2.7, 3.10], [2.1, 2.37], [1.8, 1.92]],
+        'pred_aspect_ratios': [ [[1, sqrt(2), 1/sqrt(2), sqrt(3), 1/sqrt(3)][:n], [1]] for n in [3, 5, 5, 5, 3, 3] ],
     }),
-
+    
     # FPN Settings
     'fpn': fpn_base.copy({
         'use_conv_downsample': True,
