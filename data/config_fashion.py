@@ -3,52 +3,39 @@ from math import sqrt
 import torch
 
 # for making bounding boxes pretty
-COLORS = ((244,  67,  54),
-          (233,  30,  99),
-          (156,  39, 176),
-          (103,  58, 183),
-          ( 63,  81, 181),
-          ( 33, 150, 243),
-          (  3, 169, 244),
-          (  0, 188, 212),
-          (  0, 150, 136),
-          ( 76, 175,  80),
-          (139, 195,  74),
-          (205, 220,  57),
-          (255, 235,  59),
-          (255, 193,   7),
-          (255, 152,   0),
-          (255,  87,  34),
-          (121,  85,  72),
+COLORS = ((244, 67, 54),
+          (233, 30, 99),
+          (156, 39, 176),
+          (103, 58, 183),
+          (63, 81, 181),
+          (33, 150, 243),
+          (3, 169, 244),
+          (0, 188, 212),
+          (0, 150, 136),
+          (76, 175, 80),
+          (139, 195, 74),
+          (205, 220, 57),
+          (255, 235, 59),
+          (255, 193, 7),
+          (255, 152, 0),
+          (255, 87, 34),
+          (121, 85, 72),
           (158, 158, 158),
-          ( 96, 125, 139))
-
+          (96, 125, 139))
 
 # These are in BGR and are for ImageNet
 MEANS = (103.94, 116.78, 123.68)
-STD   = (57.38, 57.12, 58.40)
+STD = (57.38, 57.12, 58.40)
 
-COCO_CLASSES = ('shirt, blouse', 'top, t-shirt, sweatshirt', 'sweater', 'cardigan', 'jacket', 'vest',
-                'pants', 'shorts', 'skirt', 'coat', 'dress',
-                'jumpsuit', 'cape', 'glasses', 'hat', 'cat', 'headband, head covering, hair accessory',
-                'tie', 'glove', 'watch', 'belt', 'leg warmerleg warmer', 'tights, stockings', 'sock',
-                'shoe', 'bag, wallet', 'scarf', 'umbrella', 'hood', 'collar',
-                'lapel', 'epaulette', 'sleeve', 'pocket', 'neckline',
-                'buckle', 'zipper', 'applique', 'bead',
-                'bow', 'flower', 'fringe', 'ribbon', 'rivet', 'ruffle', 'sequin',
-                'tassel')
-
-COCO_LABEL_MAP = { 1:  1,  2:  2,  3:  3,  4:  4,  5:  5,  6:  6,  7:  7,  8:  8,
-                   9:  9, 10: 10, 11: 11, 13: 12, 14: 13, 15: 14, 16: 15, 17: 16,
-                  18: 17, 19: 18, 20: 19, 21: 20, 22: 21, 23: 22, 24: 23, 25: 24,
-                  27: 25, 28: 26, 31: 27, 32: 28, 33: 29, 34: 30, 35: 31, 36: 32,
-                  37: 33, 38: 34, 39: 35, 40: 36, 41: 37, 42: 38, 43: 39, 44: 40,
-                  46: 41, 47: 42, 48: 43, 49: 44, 50: 45, 51: 46, 52: 47, 53: 48,
-                  54: 49, 55: 50, 56: 51, 57: 52, 58: 53, 59: 54, 60: 55, 61: 56,
-                  62: 57, 63: 58, 64: 59, 65: 60, 67: 61, 70: 62, 72: 63, 73: 64,
-                  74: 65, 75: 66, 76: 67, 77: 68, 78: 69, 79: 70, 80: 71, 81: 72,
-                  82: 73, 84: 74, 85: 75, 86: 76, 87: 77, 88: 78, 89: 79, 90: 80}
-
+Fashion_CLASSES = ('shirt, blouse', 'top, t-shirt, sweatshirt', 'sweater', 'cardigan', 'jacket', 'vest',
+                   'pants', 'shorts', 'skirt', 'coat', 'dress',
+                   'jumpsuit', 'cape', 'glasses', 'hat', 'cat', 'headband, head covering, hair accessory',
+                   'tie', 'glove', 'watch', 'belt', 'leg warmerleg warmer', 'tights, stockings', 'sock',
+                   'shoe', 'bag, wallet', 'scarf', 'umbrella', 'hood', 'collar',
+                   'lapel', 'epaulette', 'sleeve', 'pocket', 'neckline',
+                   'buckle', 'zipper', 'applique', 'bead',
+                   'bow', 'flower', 'fringe', 'ribbon', 'rivet', 'ruffle', 'sequin',
+                   'tassel')
 
 
 # ----------------------- CONFIG CLASS ----------------------- #
@@ -73,7 +60,7 @@ class Config(object):
         """
 
         ret = Config(vars(self))
-        
+
         for key, val in new_config_dict.items():
             ret.__setattr__(key, val)
 
@@ -89,13 +76,10 @@ class Config(object):
 
         for key, val in new_config_dict.items():
             self.__setattr__(key, val)
-    
+
     def print(self):
         for k, v in vars(self).items():
             print(k, ' = ', v)
-
-
-
 
 
 # ----------------------- DATASETS ----------------------- #
@@ -105,17 +89,17 @@ dataset_base = Config({
 
     # Training images and annotations
     'train_images': '/data_sharing/data411/zl9/fashion-2019/train/',
-    'train_info':   '/data_sharing/data411/zl9/fashion-2019/fashion_coco/instances_fashion_train2018_v2.json',
+    'train_info': '/data_sharing/data411/zl9/fashion-2019/fashion_coco/instances_fashion_train2018_v2.json',
 
     # Validation images and annotations.
     'valid_images': '/data_sharing/data411/zl9/fashion-2019/val/',
-    'valid_info':   '/data_sharing/data411/zl9/fashion-2019/fashion_coco/instances_fashion_val2019.json',
+    'valid_info': '/data_sharing/data411/zl9/fashion-2019/fashion_coco/instances_fashion_val2019.json',
 
     # Whether or not to load GT. If this is False, eval.py quantitative evaluation won't work.
     'has_gt': True,
 
     # A list of names for each of you classes.
-    'class_names': COCO_CLASSES,
+    'class_names': Fashion_CLASSES,
 
     # COCO class ids aren't sequential, so this is a bandage fix. If your ids aren't sequential,
     # provide a map from category_id -> index in class_names + 1 (the +1 is there because it's 1-indexed).
@@ -124,44 +108,13 @@ dataset_base = Config({
 })
 
 fashion_dataset = dataset_base.copy({
-    'name': 'ashion ',
+    'name': 'fashion_dataset ',
 
     'train_info': '/data_sharing/data411/zl9/fashion-2019/fashion_coco/instances_fashion_train2018_v2.json',
     'valid_info': '/data_sharing/data411/zl9/fashion-2019/fashion_coco/instances_fashion_val2019.json',
 
-    'label_map': COCO_LABEL_MAP
+    'label_map': None
 })
-
-coco2014_dataset = dataset_base.copy({
-    'name': 'COCO 2014',
-    
-    'train_info': './data/coco/annotations/instances_train2014.json',
-    'valid_info': './data/coco/annotations/instances_val2014.json',
-
-    'label_map': COCO_LABEL_MAP
-})
-
-coco2017_dataset = dataset_base.copy({
-    'name': 'COCO 2017',
-    
-    'train_info': './data/coco/annotations/instances_train2017.json',
-    'valid_info': './data/coco/annotations/instances_val2017.json',
-
-    'label_map': COCO_LABEL_MAP
-})
-
-coco2017_testdev_dataset = dataset_base.copy({
-    'name': 'COCO 2017 Test-Dev',
-
-    'valid_info': './data/coco/annotations/image_info_test-dev2017.json',
-    'has_gt': False,
-
-    'label_map': COCO_LABEL_MAP
-})
-
-
-
-
 
 # ----------------------- TRANSFORMS ----------------------- #
 
@@ -187,10 +140,6 @@ darknet_transform = Config({
     'subtract_means': False,
     'to_float': True,
 })
-
-
-
-
 
 # ----------------------- BACKBONES ----------------------- #
 
@@ -218,8 +167,8 @@ resnet101_backbone = backbone_base.copy({
     'transform': resnet_transform,
 
     'selected_layers': list(range(2, 8)),
-    'pred_scales': [[1]]*6,
-    'pred_aspect_ratios': [ [[0.66685089, 1.7073535, 0.87508774, 1.16524493, 0.49059086]] ] * 6,
+    'pred_scales': [[1]] * 6,
+    'pred_aspect_ratios': [[[0.66685089, 1.7073535, 0.87508774, 1.16524493, 0.49059086]]] * 6,
 })
 
 resnet101_gn_backbone = backbone_base.copy({
@@ -230,8 +179,8 @@ resnet101_gn_backbone = backbone_base.copy({
     'transform': resnet_transform,
 
     'selected_layers': list(range(2, 8)),
-    'pred_scales': [[1]]*6,
-    'pred_aspect_ratios': [ [[0.66685089, 1.7073535, 0.87508774, 1.16524493, 0.49059086]] ] * 6,
+    'pred_scales': [[1]] * 6,
+    'pred_aspect_ratios': [[[0.66685089, 1.7073535, 0.87508774, 1.16524493, 0.49059086]]] * 6,
 })
 
 resnet50_backbone = resnet101_backbone.copy({
@@ -251,15 +200,15 @@ darknet53_backbone = backbone_base.copy({
 
     'selected_layers': list(range(3, 9)),
     'pred_scales': [[3.5, 4.95], [3.6, 4.90], [3.3, 4.02], [2.7, 3.10], [2.1, 2.37], [1.8, 1.92]],
-    'pred_aspect_ratios': [ [[1, sqrt(2), 1/sqrt(2), sqrt(3), 1/sqrt(3)][:n], [1]] for n in [3, 5, 5, 5, 3, 3] ],
+    'pred_aspect_ratios': [[[1, sqrt(2), 1 / sqrt(2), sqrt(3), 1 / sqrt(3)][:n], [1]] for n in [3, 5, 5, 5, 3, 3]],
 })
 
 vgg16_arch = [[64, 64],
-              [ 'M', 128, 128],
-              [ 'M', 256, 256, 256],
+              ['M', 128, 128],
+              ['M', 256, 256, 256],
               [('M', {'kernel_size': 2, 'stride': 2, 'ceil_mode': True}), 512, 512, 512],
-              [ 'M', 512, 512, 512],
-              [('M',  {'kernel_size': 3, 'stride':  1, 'padding':  1}),
+              ['M', 512, 512, 512],
+              [('M', {'kernel_size': 3, 'stride': 1, 'padding': 1}),
                (1024, {'kernel_size': 3, 'padding': 6, 'dilation': 6}),
                (1024, {'kernel_size': 1})]]
 
@@ -271,13 +220,9 @@ vgg16_backbone = backbone_base.copy({
     'transform': vgg_transform,
 
     'selected_layers': [3] + list(range(5, 10)),
-    'pred_scales': [[5, 4]]*6,
-    'pred_aspect_ratios': [ [[1], [1, sqrt(2), 1/sqrt(2), sqrt(3), 1/sqrt(3)][:n]] for n in [3, 5, 5, 5, 3, 3] ],
+    'pred_scales': [[5, 4]] * 6,
+    'pred_aspect_ratios': [[[1], [1, sqrt(2), 1 / sqrt(2), sqrt(3), 1 / sqrt(3)][:n]] for n in [3, 5, 5, 5, 3, 3]],
 })
-
-
-
-
 
 # ----------------------- MASK BRANCH TYPES ----------------------- #
 
@@ -339,23 +284,15 @@ mask_type = Config({
     'lincomb': 1,
 })
 
-
-
-
-
 # ----------------------- ACTIVATION FUNCTIONS ----------------------- #
 
 activation_func = Config({
-    'tanh':    torch.tanh,
+    'tanh': torch.tanh,
     'sigmoid': torch.sigmoid,
     'softmax': lambda x: torch.nn.functional.softmax(x, dim=-1),
-    'relu':    lambda x: torch.nn.functional.relu(x, inplace=True),
-    'none':    lambda x: x,
+    'relu': lambda x: torch.nn.functional.relu(x, inplace=True),
+    'none': lambda x: x,
 })
-
-
-
-
 
 # ----------------------- FPN DEFAULTS ----------------------- #
 
@@ -377,15 +314,11 @@ fpn_base = Config({
     'pad': True,
 })
 
-
-
-
-
 # ----------------------- CONFIG DEFAULTS ----------------------- #
 
 coco_base_config = Config({
     'dataset': fashion_dataset,
-    'num_classes': 47, # This should include the background class
+    'num_classes': 47,  # This should include the background class
 
     'max_iter': 400000,
 
@@ -410,7 +343,7 @@ coco_base_config = Config({
     # The terms to scale the respective loss by
     'conf_alpha': 1,
     'bbox_alpha': 1.5,
-    'mask_alpha': 0.4 / 256 * 140 * 140, # Some funky equation. Don't worry about it.
+    'mask_alpha': 0.4 / 256 * 140 * 140,  # Some funky equation. Don't worry about it.
 
     # Eval.py sets this if you just want to run YOLACT as a detector
     'eval_mask_branch': True,
@@ -432,7 +365,7 @@ coco_base_config = Config({
     'mask_proto_normalize_mask_loss_by_sqrt_area': False,
     'mask_proto_reweight_mask_loss': False,
     'mask_proto_grid_file': 'data/grid.npy',
-    'mask_proto_use_grid':  False,
+    'mask_proto_use_grid': False,
     'mask_proto_coeff_gate': False,
     'mask_proto_prototypes_as_features': False,
     'mask_proto_prototypes_as_features_no_grad': False,
@@ -472,7 +405,7 @@ coco_base_config = Config({
     'use_focal_loss': False,
     'focal_loss_alpha': 0.25,
     'focal_loss_gamma': 2,
-    
+
     # The initial bias toward forground objects, as specified in the focal loss paper
     'focal_loss_init_pi': 0.01,
 
@@ -525,7 +458,7 @@ coco_base_config = Config({
     # Input image size. If preserve_aspect_ratio is False, min_size is ignored.
     'min_size': 200,
     'max_size': 300,
-    
+
     # Whether or not to do post processing on the cpu at test time
     'force_cpu_nms': True,
 
@@ -555,7 +488,7 @@ coco_base_config = Config({
 
     # Whether or not to use the predicted coordinate scheme from Yolo v2
     'use_yolo_regressors': False,
-    
+
     # For training, bboxes are considered "positive" if their anchors have a 0.5 IoU overlap
     # or greater with a ground truth box. If this is true, instead of using the anchor boxes
     # for this IoU computation, the matching function will use the predicted bbox coordinates.
@@ -573,10 +506,6 @@ coco_base_config = Config({
     'name': 'base_config',
 })
 
-
-
-
-
 # ----------------------- YOLACT v1.0 CONFIGS ----------------------- #
 
 yolact_base_config = coco_base_config.copy({
@@ -588,33 +517,21 @@ yolact_base_config = coco_base_config.copy({
 
     # Image Size
     'max_size': 550,
-    
+
     # Training params
     'lr_steps': (280000, 600000, 700000, 750000),
     'max_iter': 800000,
-    
+
     # Backbone Settings
     'backbone': resnet101_backbone.copy({
         'selected_layers': list(range(1, 4)),
         'use_pixel_scales': True,
         'preapply_sqrt': False,
-        'use_square_anchors': True, # This is for backward compatability with a bug
+        'use_square_anchors': True,  # This is for backward compatability with a bug
 
-        'pred_aspect_ratios': [ [[1, 1/2, 2]] ]*5,
+        'pred_aspect_ratios': [[[1, 1 / 2, 2]]] * 5,
         'pred_scales': [[24], [48], [96], [192], [384]],
     }),
-
-    # 'backbone': darknet53_backbone.copy({
-    #     'name': 'DarkNet53',
-    #     'path': 'darknet53.pth',
-    #     'type': DarkNetBackbone,
-    #     'args': ([1, 2, 8, 8, 4],),
-    #     'transform': darknet_transform,
-    #
-    #     'selected_layers': list(range(3, 9)),
-    #     'pred_scales': [[3.5, 4.95], [3.6, 4.90], [3.3, 4.02], [2.7, 3.10], [2.1, 2.37], [1.8, 1.92]],
-    #     'pred_aspect_ratios': [ [[1, sqrt(2), 1/sqrt(2), sqrt(3), 1/sqrt(3)][:n], [1]] for n in [3, 5, 5, 5, 3, 3] ],
-    # }),
 
     # FPN Settings
     'fpn': fpn_base.copy({
@@ -646,7 +563,8 @@ yolact_im400_config = yolact_base_config.copy({
 
     'max_size': 400,
     'backbone': yolact_base_config.backbone.copy({
-        'pred_scales': [[int(x[0] / yolact_base_config.max_size * 400)] for x in yolact_base_config.backbone.pred_scales],
+        'pred_scales': [[int(x[0] / yolact_base_config.max_size * 400)] for x in
+                        yolact_base_config.backbone.pred_scales],
     }),
 })
 
@@ -656,7 +574,8 @@ yolact_im700_config = yolact_base_config.copy({
     'masks_to_train': 300,
     'max_size': 700,
     'backbone': yolact_base_config.backbone.copy({
-        'pred_scales': [[int(x[0] / yolact_base_config.max_size * 700)] for x in yolact_base_config.backbone.pred_scales],
+        'pred_scales': [[int(x[0] / yolact_base_config.max_size * 700)] for x in
+                        yolact_base_config.backbone.pred_scales],
     }),
 })
 
@@ -665,12 +584,12 @@ yolact_darknet53_config = yolact_base_config.copy({
 
     'backbone': darknet53_backbone.copy({
         'selected_layers': list(range(2, 5)),
-        
+
         'pred_scales': yolact_base_config.backbone.pred_scales,
         'pred_aspect_ratios': yolact_base_config.backbone.pred_aspect_ratios,
         'use_pixel_scales': True,
         'preapply_sqrt': False,
-        'use_square_anchors': True, # This is for backward compatability with a bug
+        'use_square_anchors': True,  # This is for backward compatability with a bug
     }),
 })
 
@@ -679,23 +598,20 @@ yolact_resnet50_config = yolact_base_config.copy({
 
     'backbone': resnet50_backbone.copy({
         'selected_layers': list(range(1, 4)),
-        
+
         'pred_scales': yolact_base_config.backbone.pred_scales,
         'pred_aspect_ratios': yolact_base_config.backbone.pred_aspect_ratios,
         'use_pixel_scales': True,
         'preapply_sqrt': False,
-        'use_square_anchors': True, # This is for backward compatability with a bug
+        'use_square_anchors': True,  # This is for backward compatability with a bug
     }),
 })
-
-
-
-
 
 # Default config
 cfg = yolact_base_config.copy()
 
-def set_cfg(config_name:str):
+
+def set_cfg(config_name: str):
     """ Sets the active config. Works even if cfg is already imported! """
     global cfg
 
@@ -703,7 +619,7 @@ def set_cfg(config_name:str):
     # be used like ssd300_config.copy({'max_size': 400}) for extreme fine-tuning
     cfg.replace(eval(config_name))
 
-def set_dataset(dataset_name:str):
+
+def set_dataset(dataset_name: str):
     """ Sets the dataset of the current config. """
     cfg.dataset = eval(dataset_name)
-    
