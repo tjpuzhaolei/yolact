@@ -29,7 +29,7 @@ def str2bool(v):
 
 parser = argparse.ArgumentParser(
     description='Yolact Training Script')
-parser.add_argument('--batch_size', default=24, type=int,
+parser.add_argument('--batch_size', default=32, type=int,
                     help='Batch size for training')
 parser.add_argument('--resume', default=None, type=str,
                     help='Checkpoint state_dict file to resume training from. If this is "interrupt"'\
@@ -53,7 +53,7 @@ parser.add_argument('--save_folder', default='weights/',
                     help='Directory for saving checkpoint models')
 parser.add_argument('--config', default=None,
                     help='The config object to use.')
-parser.add_argument('--save_interval', default=10000, type=int,
+parser.add_argument('--save_interval', default=2000, type=int,
                     help='The number of iterations between saving the model.')
 parser.add_argument('--validation_size', default=5000, type=int,
                     help='The number of images to use for validation.')
