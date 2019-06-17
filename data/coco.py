@@ -40,7 +40,7 @@ class COCOAnnotationTransform(object):
         for obj in target:
             if 'bbox' in obj:
                 bbox = obj['bbox']
-                label_idx = self.label_map[int(obj['category_id']) + 1]
+                label_idx = self.label_map[int(obj['category_id'])]
                 # label_idx = int(obj['category_id'])
                 final_box = list(np.array([bbox[0], bbox[1], bbox[0] + bbox[2], bbox[1] + bbox[3]]) / scale)
                 final_box.append(label_idx)
