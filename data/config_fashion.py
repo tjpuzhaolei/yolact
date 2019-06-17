@@ -102,7 +102,7 @@ dataset_base = Config({
 
     # Validation images and annotations.
     'valid_images': '/data_sharing/data411/zl9/fashion-2019/train_person/val/',
-    'valid_info': '/data_sharing/data411/zl9/fashion-2019/fashion_coco/train_person/json/instances_fashion_val2019.json',
+    'valid_info': '/data_sharing/data411/zl9/fashion-2019/train_person/json/instances_fashion_val2019.json',
 
 
     # Whether or not to load GT. If this is False, eval.py quantitative evaluation won't work.
