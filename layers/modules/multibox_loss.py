@@ -243,6 +243,7 @@ class MultiBoxLoss(nn.Module):
             loss_c = log_sum_exp(batch_conf) - batch_conf[:, 0]
         
         # Hard Negative Mining
+        loss_c = loss_c.view(pos.size()[0], pos.size()[1]) #add line 
         loss_c = loss_c.view(num, -1)
         loss_c[pos]        = 0 # filter out pos boxes
         loss_c[conf_t < 0] = 0 # filter out neutrals (conf_t = -1)
