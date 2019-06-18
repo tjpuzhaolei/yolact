@@ -29,12 +29,12 @@ def str2bool(v):
 
 parser = argparse.ArgumentParser(
     description='Yolact Training Script')
-parser.add_argument('--batch_size', default=16, type=int,
+parser.add_argument('--batch_size', default=8, type=int,
                     help='Batch size for training')
 parser.add_argument('--resume', default=None, type=str,
                     help='Checkpoint state_dict file to resume training from. If this is "interrupt"'\
                          ', the model will resume training from the interrupt file.')
-parser.add_argument('--start_iter', default=4000, type=int,
+parser.add_argument('--start_iter', default=8000, type=int,
                     help='Resume training at this iter. If this is -1, the iteration will be'\
                          'determined from the file name.')
 parser.add_argument('--num_workers', default=4, type=int,
@@ -153,7 +153,7 @@ def train():
         args.resume = SavePath.get_interrupt(args.save_folder)
     elif args.resume == 'latest':
         args.resume = SavePath.get_latest(args.save_folder, cfg.name)
-    args.resume = './weights/yolact_base_2_4000.pth'
+    args.resume = './weights/yolact_base_2_8000.pth'
     if args.resume is not None:
         print('Resuming training, loading {}...'.format(args.resume))
         yolact_net.load_weights(args.resume)
