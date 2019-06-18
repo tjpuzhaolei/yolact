@@ -153,7 +153,7 @@ def train():
         args.resume = SavePath.get_interrupt(args.save_folder)
     elif args.resume == 'latest':
         args.resume = SavePath.get_latest(args.save_folder, cfg.name)
-
+    args.resume = './weights/yolact_base_2_4000.pth'
     if args.resume is not None:
         print('Resuming training, loading {}...'.format(args.resume))
         yolact_net.load_weights(args.resume)
